@@ -1,4 +1,14 @@
-const NewTaskForm = () => {
+import { useState } from 'react'
+
+const NewTaskForm = ({ addTodo }) => {
+  const [value, setValue] = useState('');
+
+  const handleKeyPress = (e) => {
+    if (e.key === 'Enter' && value.trim()) {
+      setValue('');
+      addTodo(value);
+    }
+  };
 	return (
 		<header className='header'>
 			<h1>todos</h1>
@@ -6,6 +16,9 @@ const NewTaskForm = () => {
 				className='new-todo'
 				placeholder='What needs to be done?'
 				autoFocus
+				value={value}
+				onChange={e => setValue(e.target.value)}
+				onKeyPress={handleKeyPress}
 			/>
 		</header>
 	)
