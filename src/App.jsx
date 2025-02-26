@@ -61,12 +61,18 @@ function App() {
 	  const removeTodo = (id) => {
 		setTodos(todos.filter(todo => todo.id !== id))
 	  }
+	  const clearAll = () => {
+		setTodos(todos.filter(todo => todo.completed !== true))
+	  }
+	  const showLength = () => {
+		return `${todos.length} items left`
+	  }
 	return (
 		<section className='todoapp'>
 			<NewTaskForm addTodo={addTodo} />
 			<section className='main'>
-				<TaskList todos={todos} toggleTodo={toggleTodo} editMode={editMode} updateTodo={updateTodo} removeTodo={removeTodo}/>
-				<Footer />
+				<TaskList todos={todos} toggleTodo={toggleTodo} editMode={editMode} updateTodo={updateTodo} removeTodo={removeTodo} />
+				<Footer showLength={showLength}/>
 			</section>
 		</section>
 	)
