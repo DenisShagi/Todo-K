@@ -46,18 +46,26 @@ function App() {
 			)
 		)
 	}
-	const editMode = id => {
+	const editMode = (id) => {
 		setTodos(
 			todos.map(todo =>
 				todo.id === id ? { ...todo, editing: !todo.editing } : todo
 			)
 		)
 	}
+	const updateTodo = (id, newDescription) => {
+		setTodos(todos.map(todo =>
+		  todo.id === id ? { ...todo, description: newDescription } : todo
+		));
+	  };
+	  const removeTodo = (id) => {
+		setTodos(todos.filter(todo => todo.id !== id))
+	  }
 	return (
 		<section className='todoapp'>
 			<NewTaskForm addTodo={addTodo} />
 			<section className='main'>
-				<TaskList todos={todos} toggleTodo={toggleTodo} editMode={editMode} />
+				<TaskList todos={todos} toggleTodo={toggleTodo} editMode={editMode} updateTodo={updateTodo} removeTodo={removeTodo}/>
 				<Footer />
 			</section>
 		</section>
