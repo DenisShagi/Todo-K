@@ -71,8 +71,8 @@ function App() {
 		<section className='todoapp'>
 			<NewTaskForm addTodo={addTodo} />
 			<section className='main'>
-				<TaskList todos={todos} toggleTodo={toggleTodo} editMode={editMode} updateTodo={updateTodo} removeTodo={removeTodo} />
-				<Footer showLength={showLength}/>
+				<TaskList todos={todos} toggleTodo={toggleTodo} editMode={editMode} updateTodo={updateTodo} removeTodo={removeTodo} clearAll={clearAll} />
+				<Footer showLength={showLength} clearAll={clearAll}/>
 			</section>
 		</section>
 	)
