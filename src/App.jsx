@@ -5,26 +5,32 @@ import Footer from "./components/Footer";
 import { useState } from "react";
 
 import { v4 as uuidv4 } from "uuid";
+import distanceInWordsToNow from 'date-fns/formatDistanceToNow'
+import formatDistanceToNow from 'date-fns/formatDistanceToNow'
 
 function App() {
+
   const [todos, setTodos] = useState([
     {
       id: uuidv4(),
       description: "Completed task",
       completed: true,
       editing: false,
+      created: distanceInWordsToNow(new Date(2025, 2, 0, 0, 0, 10), { addSuffix: true }),
     },
     {
       id: uuidv4(),
       description: "Editing task",
       completed: false,
       editing: true,
+      created: distanceInWordsToNow(new Date(2025, 2, 0, -13, 0, 10), { addSuffix: true }),
     },
     {
       id: uuidv4(),
       description: "Active task",
       completed: false,
       editing: false,
+      created: distanceInWordsToNow(new Date(2025, 2, 0, -10, 0, 1), { addSuffix: true }),
     },
   ]);
   const [filterTodo, setFilterTodo] = useState("All");
@@ -36,6 +42,7 @@ function App() {
         description: description,
         completed: false,
         editing: false,
+        created: formatDistanceToNow(new Date()),
       },
     ]);
   };

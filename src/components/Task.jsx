@@ -3,6 +3,7 @@ const Task = ({
   description,
   completed,
   editing,
+  created,
   toggleTodo,
   editMode,
   updateTodo,
@@ -30,7 +31,7 @@ const Task = ({
         />
         <label>
           <span className="description">{description}</span>
-          <span className="created">created 5 minutes ago</span>
+          <span className="created">{created}</span>
         </label>
         <button
           className="icon icon-edit"

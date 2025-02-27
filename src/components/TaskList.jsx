@@ -10,6 +10,7 @@ const TaskList = ({ todos, toggleTodo, editMode, updateTodo, removeTodo }) => {
           description={task.description}
           completed={task.completed}
           editing={task.editing}
+          created={task.created}
           toggleTodo={() => toggleTodo(task.id)}
           editMode={() => editMode(task.id)}
           updateTodo={(description) => updateTodo(task.id, description)}
