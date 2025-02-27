@@ -1,6 +1,6 @@
-import { useState } from 'react'
+import { useState } from 'react';
 
-const NewTaskForm = ({ addTodo }) => {
+function NewTaskForm({ addTodo }) {
   const [value, setValue] = useState('');
 
   const handleKeyPress = (e) => {
@@ -9,19 +9,19 @@ const NewTaskForm = ({ addTodo }) => {
       addTodo(value);
     }
   };
-	return (
-		<header className='header'>
-			<h1>todos</h1>
-			<input
-				className='new-todo'
-				placeholder='What needs to be done?'
-				autoFocus
-				value={value}
-				onChange={e => setValue(e.target.value)}
-				onKeyPress={handleKeyPress}
-			/>
-		</header>
-	)
+  return (
+    <header className="header">
+      <h1>todos</h1>
+      <input
+        className="new-todo"
+        placeholder="What needs to be done?"
+        autoFocus
+        value={value}
+        onChange={(e) => setValue(e.target.value)}
+        onKeyPress={handleKeyPress}
+      />
+    </header>
+  );
 }
 
-export default NewTaskForm
+export default NewTaskForm;

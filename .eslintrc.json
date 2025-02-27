@@ -1,0 +1,71 @@
+{
+	"env": {
+		"browser": true,
+		"es2021": true
+	},
+	"ignorePatterns": ["node_modules", "dist", "build"],
+	"extends": [
+		"airbnb",
+		"airbnb/hooks",
+		"eslint:recommended",
+		"plugin:react/recommended",
+		"plugin:import/errors",
+		"plugin:import/warnings",
+		"plugin:jsx-a11y/recommended",
+		"plugin:prettier/recommended"
+	],
+	"plugins": ["react", "react-hooks", "jsx-a11y", "import", "prettier"],
+	"parserOptions": {
+		"ecmaFeatures": {
+			"jsx": true
+		},
+		"ecmaVersion": "latest",
+		"sourceType": "module"
+	},
+	"rules": {
+		// Отключаем форматирующие правила, чтобы Prettier управлял ими
+		"prettier/prettier": "error",
+		"indent": "off",
+		"quotes": "off",
+		"semi": "off",
+		"trailingComma": "off",
+		"linebreak-style": "off",
+
+		// Отключаем лишние правила для удобства
+		"react/react-in-jsx-scope": "off",
+		"react/prop-types": "off",
+		"import/no-unresolved": "off",
+		"import/extensions": "off",
+		"import/no-duplicates": "off",
+		"import/no-extraneous-dependencies": "off",
+
+		// Правила для сортировки импортов
+		"import/order": [
+			"error",
+			{
+				"groups": [
+					"builtin",
+					"external",
+					"internal",
+					"parent",
+					"sibling",
+					"index"
+				],
+				"newlines-between": "always"
+			}
+		],
+
+		// Accessibility (можно отключить, если мешает)
+		"react/button-has-type": "off",
+		"jsx-a11y/no-autofocus": "off",
+		"jsx-a11y/label-has-associated-control": "off"
+	},
+	"settings": {
+		"import/resolver": {
+			"node": {
+				"extensions": [".js", ".jsx", ".ts", ".tsx"],
+				"moduleDirectory": ["node_modules", "src/"]
+			}
+		}
+	}
+}

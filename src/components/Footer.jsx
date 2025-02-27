@@ -1,15 +1,15 @@
-import TasksFilter from "./TasksFilter";
+import TasksFilter from './TasksFilter';
 
-const Footer = ({ clearAll, showLength, filtersTodo, currentFilter }) => {
+function Footer({ clearAll, showLength, filtersTodo, currentFilter }) {
   return (
     <footer className="footer">
       <span className="todo-count">{showLength()}</span>
-      <TasksFilter filtersTodo={filtersTodo} currentFilter={currentFilter}/>
+      <TasksFilter filtersTodo={filtersTodo} currentFilter={currentFilter} />
       <button className="clear-completed" onClick={() => clearAll()}>
         Clear completed
       </button>
     </footer>
   );
-};
+}
 
 export default Footer;

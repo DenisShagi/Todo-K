@@ -1,6 +1,6 @@
-import Task from "./Task";
+import Task from './Task';
 
-const TaskList = ({ todos, toggleTodo, editMode, updateTodo, removeTodo }) => {
+function TaskList({ todos, toggleTodo, editMode, updateTodo, removeTodo }) {
   return (
     <ul className="todo-list">
       {todos.map((task) => (
@@ -19,6 +19,6 @@ const TaskList = ({ todos, toggleTodo, editMode, updateTodo, removeTodo }) => {
       ))}
     </ul>
   );
-};
+}
 
 export default TaskList;
