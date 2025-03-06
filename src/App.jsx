@@ -16,15 +16,7 @@ function App() {
       created: distanceInWordsToNow(new Date(2025, 2, 0, 0, 0, 10), {
         addSuffix: true,
       }),
-    },
-    {
-      id: uuidv4(),
-      description: 'Editing task',
-      completed: false,
-      editing: true,
-      created: distanceInWordsToNow(new Date(2025, 2, 0, -13, 0, 10), {
-        addSuffix: true,
-      }),
+      timer: 12,
     },
     {
       id: uuidv4(),
@@ -34,10 +26,12 @@ function App() {
       created: distanceInWordsToNow(new Date(2025, 2, 0, -10, 0, 1), {
         addSuffix: true,
       }),
+      timer: 100,
     },
   ]);
   const [filterTodo, setFilterTodo] = useState('All');
-  const addTodo = (description) => {
+
+  const addTodo = (description, totalSeconds) => {
     setTodos([
       ...todos,
       {
@@ -46,6 +40,7 @@ function App() {
         completed: false,
         editing: false,
         created: distanceInWordsToNow(new Date()),
+        timer: totalSeconds,
       },
     ]);
   };

@@ -11,6 +11,7 @@ function TaskList({ todos, toggleTodo, editMode, updateTodo, removeTodo }) {
           completed={task.completed}
           editing={task.editing}
           created={task.created}
+          timer={task.timer}
           toggleTodo={() => toggleTodo(task.id)}
           editMode={() => editMode(task.id)}
           updateTodo={(description) => updateTodo(task.id, description)}
