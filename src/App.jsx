@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import distanceInWordsToNow from 'date-fns/formatDistanceToNow';
 
@@ -13,23 +13,36 @@ function App() {
       description: 'Completed task',
       completed: true,
       editing: false,
-      created: distanceInWordsToNow(new Date(2025, 2, 0, 0, 0, 10), {
-        addSuffix: true,
-      }),
+      created: distanceInWordsToNow(new Date(2025, 2, 0, 0, 0, 10), { addSuffix: true }),
       timer: 12,
+      isRunning: false,
     },
     {
       id: uuidv4(),
       description: 'Active task',
       completed: false,
       editing: false,
-      created: distanceInWordsToNow(new Date(2025, 2, 0, -10, 0, 1), {
-        addSuffix: true,
-      }),
+      created: distanceInWordsToNow(new Date(2025, 2, 0, -10, 0, 1), { addSuffix: true }),
       timer: 100,
+      isRunning: false,
     },
   ]);
   const [filterTodo, setFilterTodo] = useState('All');
+
+  // Глобальный интервал для обновления таймеров всех активных задач
+  useEffect(() => {
+    const intervalId = setInterval(() => {
+      setTodos((prevTodos) =>
+        prevTodos.map((todo) => {
+          if (todo.isRunning && todo.timer > 0) {
+            return { ...todo, timer: todo.timer - 1 };
+          }
+          return todo;
+        })
+      );
+    }, 1000);
+    return () => clearInterval(intervalId);
+  }, []);
 
   const addTodo = (description, totalSeconds) => {
     setTodos([
@@ -41,9 +54,11 @@ function App() {
         editing: false,
         created: distanceInWordsToNow(new Date()),
         timer: totalSeconds,
+        isRunning: false,
       },
     ]);
   };
+
   const toggleTodo = (id) => {
     setTodos(todos.map((todo) => (todo.id === id ? { ...todo, completed: !todo.completed } : todo)));
   };
@@ -75,6 +90,16 @@ function App() {
     }
     return todos;
   };
+
+  const startTimer = (id) => {
+    setTodos((prevTodos) => prevTodos.map((todo) => (todo.id === id ? { ...todo, isRunning: true } : todo)));
+  };
+
+  // Функция stopTimer:
+  const stopTimer = (id) => {
+    setTodos((prevTodos) => prevTodos.map((todo) => (todo.id === id ? { ...todo, isRunning: false } : todo)));
+  };
+
   return (
     <section className="todoapp">
       <NewTaskForm addTodo={addTodo} />
@@ -85,6 +110,8 @@ function App() {
           editMode={editMode}
           updateTodo={updateTodo}
           removeTodo={removeTodo}
+          startTimer={startTimer}
+          stopTimer={stopTimer}
         />
         <Footer showLength={showLength} clearAll={clearAll} filtersTodo={filtersTodo} currentFilter={filterTodo} />
       </section>

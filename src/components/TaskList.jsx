@@ -1,6 +1,6 @@
 import Task from './Task';
 
-function TaskList({ todos, toggleTodo, editMode, updateTodo, removeTodo }) {
+function TaskList({ todos, toggleTodo, editMode, updateTodo, removeTodo, startTimer, stopTimer }) {
   return (
     <ul className="todo-list">
       {todos.map((task) => (
@@ -16,6 +16,8 @@ function TaskList({ todos, toggleTodo, editMode, updateTodo, removeTodo }) {
           editMode={() => editMode(task.id)}
           updateTodo={(description) => updateTodo(task.id, description)}
           removeTodo={() => removeTodo(task.id)}
+          startTimer={() => startTimer(task.id)}
+          stopTimer={() => stopTimer(task.id)}
         />
       ))}
     </ul>
